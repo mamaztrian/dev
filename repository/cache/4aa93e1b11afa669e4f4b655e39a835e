@@ -1,0 +1,257 @@
+<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+    <li class="sidebar-toggler-wrapper hide">
+        <div class="sidebar-toggler">
+            <span></span>
+        </div>
+    </li>
+    <!-- END SIDEBAR TOGGLER BUTTON -->
+    <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+
+    <li class="nav-item start">
+        <a href="<?php echo URL::site('admin') ?>" class="nav-link nav-toggle">
+            <img src="<?php echo URL::base('img/homepage.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+            <span class="title">Dashboard</span>
+            <!-- <span class="arrow open"></span> -->
+        </a>
+    </li>
+
+    <li class="nav-item start">
+        <a href="<?php echo URL::site('web/result?q=') ?>" class="nav-link nav-toggle" target="_BLANK">
+            <img src="<?php echo URL::base('img/visit.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+            <span class="title">View Site</span>
+            <span class="selected"></span>
+            <!-- <span class="arrow open"></span> -->
+        </a>
+    </li>
+
+    <?php if(f('auth.allowed', '/admin/document') || f('auth.allowed', '/admin/circulation') || f('auth.allowed', '/admin/member') || f('auth.allowed', '/admin/stock_opname') || f('auth.allowed', '/admin/report')): ?>
+        <li class="heading">
+            <h3 class="uppercase">Features</h3>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/document')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/document'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/document.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Dokumen</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <!-- <?php if(f('auth.allowed', '/admin/circulation')): ?>
+        <li class="nav-item">
+            <a href="<?php //echo URL::site('admin/circulation'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/circulation.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Sirkulasi</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/member')): ?>
+        <li class="nav-item">
+            <a href="<?php //echo URL::site('admin/member'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/member.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Keanggotaan</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/stock_opname')): ?>
+        <li class="nav-item">
+            <a href="<?php //echo URL::site('admin/stock_opname'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/stock-opname.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Stock Opname</span>
+            </a>
+        </li>
+    <?php endif; ?> -->
+
+    <?php /* <?php if(f('auth.allowed', '/admin/report')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/report'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/report.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">E-Pelaporan</span>
+            </a>
+        </li>
+    <?php endif; ?> */ ?>
+
+    <?php if(f('auth.allowed', '/admin/integrasi') || f('auth.allowed', '/admin/document_type') || f('auth.allowed', '/admin/tipe_pengarang') || f('auth.allowed', '/admin/tipe_kata_kunci') || f('auth.allowed', '/admin/tipe_koleksi') || f('auth.allowed', '/admin/jenis_pengarang') || f('auth.allowed', '/admin/penerbit') || f('auth.allowed', '/admin/pengarang') || f('auth.allowed', '/admin/bidang_hukum') || f('auth.allowed', '/admin/tempat_penetapan') || f('auth.allowed', '/admin/gmd') || f('auth.allowed', '/admin/kala_terbit') || f('auth.allowed', '/admin/judul')): ?>
+        <li class="heading">
+            <h3 class="uppercase">Master Data</h3>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/judul')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/judul/1/update'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/document-type.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Instansi</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/document_type')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/document_type'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/document-type.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Tipe Dokumen</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/tipe_pengarang')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/tipe_pengarang'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/pengarang.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Tipe Pengarang</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/tipe_kata_kunci')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/tipe_kata_kunci'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/subject.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Tipe Subyek</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/tipe_koleksi')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/tipe_koleksi'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/tipe_koleksi.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Tipe Koleksi</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/jenis_pengarang')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/jenis_pengarang'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/koleksi.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Jenis Pengarang</span>
+            </a>
+        </li>
+    <?php endif; ?>
+    <?php /* <li class="nav-item">
+        <a href="<?php echo URL::site('admin/jenis_peraturan'); ?>" class="nav-link nav-toggle">
+            <img src="<?php echo URL::base('img/koleksi.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+            <span class="title">Jenis Peraturan</span>
+        </a>
+    </li> */ ?>
+
+    <?php if(f('auth.allowed', '/admin/penerbit')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/penerbit'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/publisher.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Penerbit</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/pengarang')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/pengarang'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/publish.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Pengarang</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/bidang_hukum')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/bidang_hukum'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/law.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Bidang Hukum</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/tempat_penetapan')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/tempat_penetapan'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/location.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Tempat Terbit</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/gmd')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/gmd'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/gmd.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">GMD</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/kala_terbit')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/kala_terbit'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/terbit.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Kala Terbit</span>
+            </a>
+        </li>
+    <?php endif; ?>
+    <?php /* <li class="nav-item">
+        <a href="<?php echo URL::site('admin/klasifikasi'); ?>" class="nav-link nav-toggle">
+            <img src="<?php echo URL::base('img/sort.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+            <span class="title">Klasifikasi</span>
+        </a>
+    </li> */ ?>
+
+    <?php /* <li class="heading">
+        <h3 class="uppercase">Configuration</h3>
+    </li>
+    <li class="nav-item">
+        <a href="<?php echo URL::site('admin/document_configuration'); ?>" class="nav-link nav-toggle">
+            <img src="<?php echo URL::base('img/config.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+            <span class="title">Konfigurasi Dokumen</span>
+        </a>
+    </li> */ ?>
+
+    <?php if(f('auth.allowed', '/admin/user') || f('auth.allowed', '/admin/role') || f('auth.allowed', '/admin/previleges') || f('auth.allowed', '/admin/sysparam')): ?>
+        <li class="heading">
+            <h3 class="uppercase">System</h3>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/user')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/user'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/user.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">User</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/role')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/role'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/role.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Role</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/previleges')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/previleges'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/previlege.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">Previleges</span>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php if(f('auth.allowed', '/admin/sysparam')): ?>
+        <li class="nav-item">
+            <a href="<?php echo URL::site('admin/sysparam'); ?>" class="nav-link nav-toggle">
+                <img src="<?php echo URL::base('img/sysparam.png');; ?>" style="margin-top: -6px;margin-right: 4px;width: 20px;">
+                <span class="title">System Parameter</span>
+            </a>
+        </li>
+    <?php endif; ?>
+</ul>

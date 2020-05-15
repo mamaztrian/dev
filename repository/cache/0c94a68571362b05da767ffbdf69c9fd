@@ -1,0 +1,24 @@
+
+<?php $__env->startSection('page.breadcumb'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div>
+        <?php $__env->startSection('page.title'); ?>
+        <h1 class="page-title"> Welcome
+            <small><?php echo isset($_SESSION['user']) ? $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] : ''; ?>, this is a great apps</small>
+        </h1>
+        <?php echo $__env->yieldSection(); ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('customjs'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('contextual'); ?>
+<?php $__env->stopSection(); ?>
+
+
+
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

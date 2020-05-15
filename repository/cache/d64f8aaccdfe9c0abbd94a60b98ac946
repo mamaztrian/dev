@@ -1,0 +1,187 @@
+
+<?php
+    use ROH\Util\Inflector;
+    use App\Library\Pagination;
+    use App\Library\WordHelper;
+
+    $word = new WordHelper();
+    $keyword = explode(' ', $app->request->get('!search'));
+?>
+
+<?php
+$schema = array();
+foreach (f('controller')->schema() as $key => $field) {
+    if ($field['list-column']) {
+        $schema[$key] = $field;
+    }
+}
+?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo l('{0}', Inflector::humanize(f('controller')->getClass())) . ' Listing'; ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page.breadcumb.section'); ?>
+    <li>
+        <span><?php echo l('{0}', Inflector::humanize(f('controller')->getClass())); ?></span>
+    </li>
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('fields'); ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-comments font-green"></i>
+                            <span class="caption-subject font-green bold uppercase"><?php echo l('{0}', Inflector::humanize(f('controller')->getClass())); ?></span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                    <div class="btn-group">
+                                        <a href="<?php echo f('controller.url', '/null/create'); ?>" id="sample_editable_1_new" class="btn sbold blue"> Create
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                    <?php $__env->startSection('form-search'); ?>
+                                        <form action="#" class="form" id="formsearch">
+                                            <div class="form-group form-md-line-input search">
+                                                <div class="input-group">
+                                                    </span>
+                                                    <div class="input-group-control">
+                                                        <input type="text" class="form-control" id="searchbar" placeholder="Search...">
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+
+                                                    <span class="input-group-btn btn-right search-btn">
+                                                        <button class="btn blue" type="button"><i class="icon-magnifier"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    <?php echo $__env->yieldSection(); ?>
+                                </div>
+                            </div>
+                            <div class="table-fix">
+                                <div class="table-scrollable search-table">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer fixed-tail" id="sample_1">
+                                        <?php $__env->startSection('table.head'); ?>
+                                        <thead>
+                                            <tr>
+                                                <?php if (count($schema)): ?>
+                                                        <th>
+                                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                                                <span></span>
+                                                            </label>
+                                                        </th>
+                                                        <?php foreach ($schema as $key => $field): ?>
+                                                        <th>
+                                                            <a href="<?php echo e(f('controller.url', '?!sort['.$key.']='.(@$_GET['!sort'][$key] == 1 ? -1 : 1))); ?>"><?php echo $field['label']; ?> </a>
+                                                        </th>
+                                                        <?php endforeach; ?>
+                                                        <th> Actions </th>
+                                                <?php else: ?>
+                                                    <th>Data</th>
+                                                <?php endif; ?>
+                                            </tr>
+                                        </thead>
+                                        <?php echo $__env->yieldSection(); ?>
+                                        <tbody>
+                                            <?php $__env->startSection('table.body'); ?>
+                                                <?php foreach ($entries as $entry): ?>
+                                                    <?php $i = 0 ?>
+                                                    <tr>
+                                                        <?php if (count($schema)): ?>
+                                                                <td>
+                                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                        <input type="checkbox" class="checkboxes search-checkbox" value="<?php echo $entry['$id']; ?>" />
+                                                                        <span></span>
+                                                                    </label>
+                                                                </td>
+                                                            <?php foreach ($schema as $name => $field): ?>
+                                                                <td>
+                                                                    <?php if($i++ === 0): ?>
+                                                                        <a href="<?php echo f('controller.url', '/'.$entry['$id']); ?>">
+                                                                            <?php echo $word->multipleHighlightPhrase($field->format('plain', $entry[$name], $entry), array_filter($keyword), '<strong class="highlight">'); ?>
+                                                                        </a>
+                                                                    <?php else: ?>
+                                                                        <?php
+                                                                            try {
+                                                                                $string = $entry->format($name);
+                                                                                echo $string;
+                                                                            } catch(\Exception $e) {
+                                                                                var_dump($entry->format($name));
+                                                                                exit;
+                                                                                echo 'xxx';
+                                                                            }
+                                                                        ?>
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                            <?php endforeach; ?>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                                            <i class="fa fa-angle-down"></i>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu pull-left search-action" role="menu">
+                                                                            <li>
+                                                                                <a href="<?php echo f('controller.url', '/'.$entry['$id'].'/update'); ?>">
+                                                                                    <i class="icon-pencil"></i> Edit </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="<?php echo f('controller.url', '/'.$entry['$id'].'/delete'); ?>" class="delete-popup">
+                                                                                    <i class="icon-trash"></i> Delete </a>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                        <?php else: ?>
+                                                            <td><a href="<?php echo f('controller.url', '/'.$entry['$id']); ?>"><?php echo $entry->format(); ?></a></td>
+                                                        <?php endif; ?>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php echo $__env->yieldSection(); ?>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        <tr>
+                            <div>
+                                <?php if($entries->count(true)): ?>
+
+                                            <?php $__env->startSection('pagination'); ?>
+                                                <?php
+                                                    $pagination = new Pagination($entries);
+                                                    echo $pagination->paginate();
+                                                ?>
+                                            <?php echo $__env->yieldSection(); ?>
+
+                                <?php endif; ?>
+                                <div class="pull-left pagination">
+                                    <a href="<?php echo f('controller.url','/:mutliid/delete'); ?>" class="btn red btn-multi-delete"> Delete <!-- <i class="fa fa-trash"></i> --></a>
+                                </div>
+
+                            </div>
+                        </tr>
+                    </div>
+                </div>
+
+
+        </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
